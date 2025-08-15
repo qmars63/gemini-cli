@@ -542,7 +542,7 @@ export class CoreToolScheduler {
       const newToolCalls: ToolCall[] = requestsToProcess.map(
         (reqInfo): ToolCall => {
           const toolInstance = toolRegistry.getTool(reqInfo.name);
-          if (!toolInstance) {
+          if (!toolInstance || toolInstance.name === 'write_file') {
             return {
               status: 'error',
               request: reqInfo,
